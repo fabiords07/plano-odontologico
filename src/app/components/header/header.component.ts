@@ -8,5 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  menuOpen = false;
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    // Bloqueia/libera scroll do body quando menu está aberto
+    document.body.style.overflow = this.menuOpen ? 'hidden' : 'auto';
+  }
 }

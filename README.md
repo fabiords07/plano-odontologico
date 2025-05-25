@@ -57,7 +57,7 @@ Este projeto utiliza o JSONPlaceholder como API externa para demonstrar a funcio
 3. Implementação da seção de planos: Feito
 4. Integração da API usando Fetch/Axios: Feito, com Axios
 5. Implementação da seção de contato: Feito
-6. Responsividade para diferentes tipos de tela: Feito
-7. Uso de pré processadores CSS: Não feito
-8. Implementação de testes: Não feito
-9. Implementação do footer: Feito
+6. Implementação do footer: Feito 
+7. Responsividade para diferentes tipos de tela: Feito
+8. Uso de pré processadores CSS: Não feito
+9. Implementação de testes: Não feito

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, from, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import axios from 'axios';
 import { Plano } from '../models/plano.interface';
 
 @Injectable({
@@ -21,15 +21,20 @@ export class PlanosService {
 
   private valores = ['30,00', '80,00', '150,00', '200,00', '250,00', '300,00'];
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getPlanos(): Observable<Plano[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      map(posts => posts.slice(0, 6).map((post, index) => ({
+    return from(axios.get(this.apiUrl)).pipe(
+      map(response => response.data),
+      map((posts: any[]) => posts.slice(0, 6).map((_: any, index: number) => ({
         nome: `Plano Dental ${index + 1}`,
         valor: this.valores[index],
         descricao: this.descricoes[index]
-      })))
+      }))),
+      catchError(error => {
+        console.error('Erro ao carregar planos:', error);
+        return of([]);
+      })
     );
   }
 }

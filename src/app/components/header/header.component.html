@@ -1,0 +1,67 @@
+<header class="bg-blue-header text-white py-4  top-0 z-50">
+  <div class="container h-14 md:h-20 mx-auto px-4 flex justify-between items-center">
+    <a href="/" class="z-10 md:z-50">
+      <img
+        src="assets/images/logo-marlin.png"
+        alt="Marlin Odontológico"
+        class="h-full w-auto object-contain
+               max-h-28
+               sm:max-h-32
+               md:max-h-40
+               lg:max-h-40
+               xl:max-h-48"
+      />
+    </a>
+
+    <!-- Menu Desktop -->
+    <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-lg xl:text-2xl">
+      <a href="#" class="hover:text-gray-200 px-2 py-1">Início</a>
+      <a href="#planos" class="hover:text-gray-200 px-2 py-1">Planos</a>
+      <a href="#contato" class="hover:text-gray-200 px-2 py-1">Contato</a>
+      <a
+        href="#"
+        class="flex items-center gap-2 border-2 border-white rounded-xl px-4 lg:px-5 py-2 lg:py-3 hover:bg-white/10 transition-colors"
+      >
+        <mat-icon class="text-white">account_circle</mat-icon>
+        <span>Login</span>
+      </a>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <button
+      class="md:hidden z-50 p-2 focus:outline-none"
+      (click)="toggleMenu()"
+      aria-label="Menu"
+    >
+      <mat-icon class="text-white text-3xl">
+        {{ menuOpen ? 'close' : 'menu' }}
+      </mat-icon>
+    </button>
+
+    <!-- Overlay e Menu Mobile -->
+    <div
+      class="md:hidden fixed inset-0 bg-black/40"
+      [class]="menuOpen ? 'block' : 'hidden'"
+      (click)="toggleMenu()"
+    ></div>
+
+    <nav
+      class="md:hidden fixed top-0 right-0 h-full w-64 bg-blue-header text-white p-8 pt-24 transform transition-transform duration-300 ease-in-out z-40"
+      [class]="menuOpen ? 'translate-x-0' : 'translate-x-full'"
+    >
+      <div class="flex flex-col space-y-6 text-xl">
+        <a href="#" class="hover:text-gray-200 py-2 border-b border-white/10" (click)="toggleMenu()">Início</a>
+        <a href="#planos" class="hover:text-gray-200 py-2 border-b border-white/10" (click)="toggleMenu()">Planos</a>
+        <a href="#contato" class="hover:text-gray-200 py-2 border-b border-white/10" (click)="toggleMenu()">Contato</a>
+        <a
+          href="#"
+          class="flex items-center justify-center gap-2 border-2 border-white rounded-xl px-5 py-3 mt-4 hover:bg-white/10 transition-colors"
+          (click)="toggleMenu()"
+        >
+          <mat-icon class="text-white">account_circle</mat-icon>
+          <span>Login</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>

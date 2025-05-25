@@ -53,32 +53,14 @@ export class PlanosSectionComponent implements OnInit {
       );
     }
 
-    // Filtro por preço
-    if (this.filtroPreco) {
-      resultado = this.filtrarPorPreco(resultado);
+    // Ordenação por preço
+    if (this.filtroPreco === 'maior') {
+      resultado.sort((a, b) => this.getValorNumerico(b.valor) - this.getValorNumerico(a.valor));
+    } else if (this.filtroPreco === 'menor') {
+      resultado.sort((a, b) => this.getValorNumerico(a.valor) - this.getValorNumerico(b.valor));
     }
 
     this.planosFiltrados = resultado;
-  }
-
-  private filtrarPorPreco(planos: Plano[]): Plano[] {
-    const planosComValor = planos.map(plano => ({
-      ...plano,
-      valorNumerico: this.getValorNumerico(plano.valor)
-    }));
-
-    switch (this.filtroPreco) {
-      case 'maior':
-        return planosComValor
-          .sort((a, b) => b.valorNumerico - a.valorNumerico)
-          .map(({ valorNumerico, ...plano }) => plano);
-      case 'menor':
-        return planosComValor
-          .sort((a, b) => a.valorNumerico - b.valorNumerico)
-          .map(({ valorNumerico, ...plano }) => plano);
-      default:
-        return planos;
-    }
   }
 
   private getValorNumerico(valor: string): number {
